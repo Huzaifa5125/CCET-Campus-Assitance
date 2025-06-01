@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCET Chatbot Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <div class="logo-container">
+                        <h1 class="logo">CCET</h1>
+                        <span class="tagline">Chandigarh College of Engineering and Technology</span>
+                    </div>
+                    <button id="toggle-sidebar" class="btn btn--secondary btn--sm mobile-only">
+                        <i class="fas fa-bars"></i> Quick Access
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content container">
+            <div class="content-wrapper">
+                <!-- Sidebar -->
+                <aside class="sidebar" id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>Quick Access</h3>
+                        <button id="close-sidebar" class="btn btn--secondary btn--sm mobile-only">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Student Portals</h4>
+                        <a href="https://paydirect.eduqfix.com/app/3qTjKfysWsfqEyNTM4giVFX4VGVYGZss5NYRHpY65DaJgmu14S3Ff6NKoVa3l2Ay/6593" target="_blank" class="btn btn--primary btn--full-width mb-8">
+                            <i class="fas fa-credit-card"></i> Fees Portal
+                        </a>
+                        <a href="https://eakadamik.in/ccet/" target="_blank" class="btn btn--primary btn--full-width">
+                            <i class="fas fa-graduation-cap"></i> CCET Results
+                        </a>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Download Syllabus</h4>
+                        <div class="form-group">
+                            <select id="syllabus-select" class="form-control">
+                                <option value="" selected disabled>Select Branch</option>
+                                <option value="cse">Computer Science Engineering</option>
+                                <option value="ece">Electronics & Communication Engineering</option>
+                                <option value="mechanical">Mechanical Engineering</option>
+                                <option value="civil">Civil Engineering</option>
+                            </select>
+                        </div>
+                        <button id="download-syllabus" class="btn btn--secondary btn--full-width" disabled>
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </button>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Common Queries</h4>
+                        <div class="quick-queries">
+                            <button class="query-btn" data-query="Tell me about admission process">Admission process</button>
+                            <button class="query-btn" data-query="What is the fee structure?">Fee structure</button>
+                            <button class="query-btn" data-query="Tell me about placements">Placement information</button>
+                            <button class="query-btn" data-query="How are the hostel facilities?">Hostel facilities</button>
+                            <button class="query-btn" data-query="When is the next academic calendar?">Academic calendar</button>
+                            <button class="query-btn" data-query="How can I contact the college?">Contact information</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Chat Actions</h4>
+                        <button id="clear-chat" class="btn btn--outline btn--full-width mb-8">
+                            <i class="fas fa-trash"></i> Clear Chat
+                        </button>
+                        <button id="help-btn" class="btn btn--outline btn--full-width">
+                            <i class="fas fa-question-circle"></i> Help
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Main Chat Area -->
+                <main class="chat-area">
+                    <div class="chat-container" id="chat-container">
+                        <!-- Chat messages will be displayed here -->
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="input-wrapper">
+                            <input type="text" id="chat-input" class="form-control" placeholder="Type your message here...">
+                            <button id="send-btn" class="btn btn--primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p>&copy; 2025 Chandigarh College of Engineering and Technology</p>
+                    </div>
+                    <div class="flex gap-16">
+                        <a href="https://ccet.ac.in" target="_blank">Official Website</a>
+                        <a href="https://ccet.ac.in/contact-us" target="_blank">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content card">
+                <div class="card__header">
+                    <div class="flex justify-between items-center">
+                        <h3>CCET Chatbot Help</h3>
+                        <button class="modal-close btn btn--secondary btn--sm"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <h4>What can this chatbot do?</h4>
+                    <ul>
+                        <li>Answer questions about CCET college</li>
+                        <li>Provide information about admissions, placements, and facilities</li>
+                        <li>Help you access important portals and resources</li>
+                        <li>Download syllabus for different branches</li>
+                    </ul>
+                    
+                    <h4>Quick Tips</h4>
+                    <ul>
+                        <li>Use the sidebar for quick access to common resources</li>
+                        <li>Click on the "Quick Queries" buttons to ask common questions</li>
+                        <li>The chatbot remembers your conversation context</li>
+                        <li>Click "Clear Chat" to start a new conversation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
